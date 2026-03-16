@@ -8,7 +8,21 @@ import { CatalogService } from '../../../core/services/domain-services';
 @Component({
   standalone: true,
   imports: [ReactiveFormsModule, AsyncPipe, NgFor, CurrencyPipe, RouterLink],
-  template: `<h1 class='page-title'>Catálogo</h1><form class='card' [formGroup]='filterForm'><input placeholder='buscar produtos' formControlName='term' /></form><section class='grid' style='grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:1rem'><article class='card' *ngFor='let p of products$ | async'><h3>{{p.name}}</h3><p>{{p.variants[0]?.price | currency:'BRL'}}</p><a [routerLink]="['/produto', p.id]">Ver produto</a></article></section>`
+  template: `
+    <h2 class='page-title'>Catálogo</h2>
+
+    <form class='card' [formGroup]='filterForm'>
+      <input placeholder='Buscar no catálogo' formControlName='term' />
+    </form>
+
+    <section class='grid vf-products'>
+      <article class='card vf-product-card' *ngFor='let p of products$ | async'>
+        <h3>{{ p.name }}</h3>
+        <p class='vf-price'>{{ p.variants[0]?.price | currency:'BRL' }}</p>
+        <a [routerLink]="['/produto', p.id]">Ver produto</a>
+      </article>
+    </section>
+  `
 })
 export class CatalogPageComponent {
   private service = inject(CatalogService);
