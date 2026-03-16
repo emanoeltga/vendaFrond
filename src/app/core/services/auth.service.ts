@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly tokenKey = 'vf_access_token';
+  private readonly tokenKey = 'accessToken';
   readonly roles = signal<string[]>([]);
 
   login(payload: LoginRequest) {
