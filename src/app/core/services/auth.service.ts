@@ -6,11 +6,11 @@ import { AuthToken, LoginRequest } from '../models/auth.model';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly tokenKey = 'vf_access_token';
+  private readonly tokenKey = 'accessToken';
   readonly roles = signal<string[]>([]);
 
   login(payload: LoginRequest) {
-    return this.http.post<AuthToken>('/api/auth/login', payload).pipe(
+    return this.http.post<AuthToken>(`${environment.apiBaseUrl}api/auth/login`, payload).pipe(
       tap((res) => {
         localStorage.setItem(this.tokenKey, res.accessToken);
         this.roles.set(res.roles);
