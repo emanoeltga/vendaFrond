@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { AuthToken, LoginRequest } from '../models/auth.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
   readonly roles = signal<string[]>([]);
 
   login(payload: LoginRequest) {
-    return this.http.post<AuthToken>('/api/auth/login', payload).pipe(
+    return this.http.post<AuthToken>(`${environment.apiBaseUrl}/api/auth/login`, payload).pipe(
       tap((res) => {
         localStorage.setItem(this.tokenKey, res.accessToken);
         this.roles.set(res.roles);

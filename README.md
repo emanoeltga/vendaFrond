@@ -44,7 +44,9 @@ src/app
    ```
 
 ## Integração API REST + JWT
-- Base endpoint configurada em rotas `/api/**` (utilize proxy/nginx ou ajuste por environment).
+- Base endpoint configurada por `environment.apiBaseUrl` (arquivo `src/environments/environment.ts`).
+- Em desenvolvimento, `npm start` usa `proxy.conf.json` para redirecionar `/api/**` para `http://localhost:8080`.
+- Em produção, ajuste `src/environments/environment.prod.ts` para a URL final do backend (ou mantenha vazio para mesmo domínio).
 - Login em `POST /api/auth/login`.
 - Token salvo em `localStorage` e enviado via interceptor em `Authorization: Bearer <token>`.
 - Serviços implementados para domínios:
