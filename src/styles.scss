@@ -16,3 +16,31 @@ body {
 .page-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
 .grid { display: grid; gap: 1rem; }
 .card { border-radius: 14px; background: #fff; padding: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,.05); }
+
+
+.vf-products {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin-top: 1rem;
+}
+
+.vf-product-card {
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.vf-product-card:hover {
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+
+.vf-product-card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.vf-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: .45rem 0 .65rem;
+}
